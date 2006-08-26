@@ -1,0 +1,81 @@
+0 HEAD
+1 SOUR GRAMPS
+2 VERS 2.0.11-2
+2 NAME GRAMPS
+1 DEST GEDCOM 5.5
+1 DATE 25 AUG 2006
+1 CHAR ANSEL
+1 SUBM @SUBM@
+1 FILE /home/josh/software/development/geddiff/dbg/file2.ged
+1 COPR Copyright (c) 2006 Josh Hansen. See additional copyright NOTE below.
+1 GEDC
+2 VERS 5.5
+2 FORM LINEAGE-LINKED
+1 NOTE       Copyright (c) 2006 Josh Hansen.
+0 @SUBM@ SUBM
+1 NAME Josh Hansen
+1 ADDR 670 N 300 E Apt C3
+2 CONT Provo
+2 CONT UT
+2 CONT 84606
+2 CONT USA
+1 PHON 801-830-7898
+0 @I0000@ INDI
+1 REFN 0
+1 NAME William Joseph /Blithely/
+2 GIVN William Joseph
+2 SURN Blithely
+1 SEX M
+1 BIRT
+2 DATE 3 MAR 1544
+2 PLAC London, England
+1 FAMS @F0000@
+1 CHAN
+2 DATE 25 AUG 2006
+3 TIME 16:24:54
+0 @I0001@ INDI
+1 REFN 1
+1 NAME Little Billy /Blithely/
+2 GIVN Little Billy
+2 SURN Blithely
+1 SEX M
+1 BIRT
+2 DATE 29 DEC 1567
+2 PLAC Sometown, Someshire, England
+1 FAMC @F0000@
+1 CHAN
+2 DATE 25 AUG 2006
+3 TIME 16:26:32
+0 @I0002@ INDI
+1 REFN 2
+1 NAME Mary Jane /Pitth/
+2 GIVN Mary Jane
+2 SURN Pitth
+1 SEX F
+1 FAMS @F0000@
+1 CHAN
+2 DATE 25 AUG 2006
+3 TIME 16:21:51
+0 @I0003@ INDI
+1 REFN 3
+1 NAME Little Girl /Blithely/
+2 GIVN Little Girl
+2 SURN Blithely
+1 SEX F
+1 FAMC @F0000@
+1 CHAN
+2 DATE 25 AUG 2006
+3 TIME 16:24:17
+0 @F0000@ FAM
+1 REFN 0
+1 HUSB @I0000@
+1 WIFE @I0002@
+1 MARR
+2 DATE 7 JUL 1566
+2 PLAC Sometown, Someshire, England
+1 CHIL @I0001@
+1 CHIL @I0003@
+1 CHAN
+2 DATE 25 AUG 2006
+3 TIME 16:25:45
+0 TRLR
