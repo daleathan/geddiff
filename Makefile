@@ -1,3 +1,4 @@
+#------------------------- geddiff ------------------------
 INCLUDES = -I/usr/local/include -Iinclude
 LIB_PATHS = -L/usr/local/lib
 FLAGS = -Wall -g $(INCLUDES) $(LIB_PATHS)
@@ -6,11 +7,11 @@ EXE_NAME = bin/geddiff
 LIBS=-lgedcom_gom -lutf8tools -lgedcom
 OBJ_FILES = obj/geddiff.o obj/geddiff-prog.o
 
-all: lib obj bin
+all: lgedcom++ obj bin
 bin: $(EXE_NAME)
 test : bin/geddiff-test
 	bin/geddiff-test
-lib : 
+lib : libgedcom++
 obj: $(OBJ_FILES)
 
 #----------------------Executables-------------------------
@@ -31,7 +32,11 @@ clean:
 	rm -f obj/*.o
 	rm -f ./*~
 	rm -f src/*~
+	cd libgedcom++; make clean
 
+#------------------- libgedcom++ ------------------
+lgedcom++ :
+	cd libgedcom++; make
 dep:
 	makedepend $(FLAGS) src/*.cpp
 
