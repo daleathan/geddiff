@@ -1,22 +1,33 @@
 /******************************************************
 	note.h
-	Josh Hansen <josh@cervantes>, (C) 2006
+	Josh Hansen <oyevato@gmail.com>, (C) 2006
 ******************************************************/
 #ifndef NOTE_H
 #define NOTE_H
 
-#include <gedcomrecord.h>
+class SourceCitation;
+class UserRefNumber;
+class ChangeDate;
 
+#include <string>
+#include "gedcomrecord.h"
+using namespace std;
 /**
-	@author Josh Hansen <josh@cervantes>
+	@author Josh Hansen <oyevato@gmail.com>
 */
 class Note : public GedcomRecord
 {
 	public:
 		Note();
-
 		~Note();
-
+	private:
+		//string xrefstr;
+		string text;
+		SourceCitation* citation;
+		UserRefNumber* ref;
+		ChangeDate* change_date;
+		Note* next;
+		Note* prev;
 };
 
 #endif

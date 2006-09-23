@@ -1,22 +1,38 @@
 /******************************************************
 	multimediaitem.h
-	Josh Hansen <josh@cervantes>, (C) 2006
+	Josh Hansen <oyevato@gmail.com>, (C) 2006
 ******************************************************/
 #ifndef MULTIMEDIAITEM_H
 #define MULTIMEDIAITEM_H
 
-#include <gedcomrecord.h>
+class NoteSub;
+class XRefValue;
+class UserRefNumber;
+class ChangeDate;
 
+#include <string>
+#include "gedcomrecord.h"
+using namespace std;
 /**
-	@author Josh Hansen <josh@cervantes>
+	@author Josh Hansen <oyevato@gmail.com>
 */
 class MultimediaItem : public GedcomRecord
 {
 	public:
 		MultimediaItem();
-
 		~MultimediaItem();
-
+		//accessors
+	private:
+		//string xrefstr;
+		string form;
+		string title;
+		NoteSub* note;
+		string data;
+		XRefValue* continued;
+		UserRefNumber* ref;
+		ChangeDate* change_date;
+		MultimediaItem* next;
+		MultimediaItem* prev;
 };
 
 #endif
