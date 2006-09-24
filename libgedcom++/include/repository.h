@@ -1,22 +1,37 @@
 /******************************************************
 	repository.h
-	Josh Hansen <josh@cervantes>, (C) 2006
+	Josh Hansen <oyevato@gmail.com>, (C) 2006
 ******************************************************/
 #ifndef REPOSITORY_H
 #define REPOSITORY_H
 
-#include <gedcomrecord.h>
+class Address;
+class NoteSub;
+class UserRefNumber;
+class ChangeDate;
 
+#include <string>
+#include "gedcomrecord.h"
+using namespace std;
 /**
-	@author Josh Hansen <josh@cervantes>
+	@author Josh Hansen <oyevato@gmail.com>
 */
 class Repository : public GedcomRecord
 {
 	public:
 		Repository();
-
 		~Repository();
-
+		//accessors
+	private:
+		//string xrefstr;
+		string name;
+		Address* address;
+		string phone;
+		NoteSub* note;
+		UserRefNumber* ref;
+		ChangeDate* change_date;
+		Repository* next;
+		Repository* prev;
 };
 
 #endif

@@ -1,20 +1,31 @@
 /******************************************************
 	notesub.h
-	Josh Hansen <josh@cervantes>, (C) 2006
+	Josh Hansen <oyevato@gmail.com>, (C) 2006
 ******************************************************/
 #ifndef NOTESUB_H
 #define NOTESUB_H
 
+class XRefValue;
+class SourceCitation;
+class UserData;
+#include <string>
+using namespace std;
+
 /**
-	@author Josh Hansen <josh@cervantes>
+	@author Josh Hansen <oyevato@gmail.com>
 */
 class NoteSub
 {
 	public:
 		NoteSub();
-
 		~NoteSub();
-
+	private:
+		string text;
+		XRefValue* reference;
+		SourceCitation* citation;
+		UserData* extra;
+		NoteSub* next;
+		NoteSub* prev;
 };
 
 #endif

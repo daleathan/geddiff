@@ -1,20 +1,29 @@
 /******************************************************
 	sourcedata.h
-	Josh Hansen <josh@cervantes>, (C) 2006
+	Josh Hansen <oyevato@gmail.com>, (C) 2006
 ******************************************************/
 #ifndef SOURCEDATA_H
 #define SOURCEDATA_H
 
+class SourceEvent;
+class NoteSub;
+
+#include <string>
+using namespace std;
+
 /**
-	@author Josh Hansen <josh@cervantes>
+	@author Josh Hansen <oyevato@gmail.com>
 */
 class SourceData
 {
 	public:
 		SourceData();
-
 		~SourceData();
-
+		//accessors etc.
+	private:
+		SourceEvent* event;
+		string agency;
+		NoteSub* note;
 };
 
 #endif
