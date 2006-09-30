@@ -5,6 +5,7 @@
 #ifndef SUBMISSION_H
 #define SUBMISSION_H
 
+class XRefValue;
 #include <string>
 #include "gedcomrecord.h"
 using namespace std;

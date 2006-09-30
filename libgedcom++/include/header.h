@@ -9,9 +9,9 @@ class DateValue;
 class UserData;
 class XRefValue;
 #include <string>
-#include "headersource.h"
-#include "headergedcom.h"	//??
-#include "headercharset.h"	//??
+#include "source.h"
+#include "gedcom.h"	//??
+#include "charset.h"	//??
 
 using namespace std;
 
@@ -26,7 +26,7 @@ class Header
 		~Header();
 		//accessors
 	private:
-		HeaderSource source;
+		Source source;
 		string destination;
 		DateValue* date;
 		string time;
@@ -34,8 +34,8 @@ class Header
 		XRefValue* submission;
 		string filename;
 		string copyright;
-		HeaderGedcom gedcom;
-		HeaderCharSet charset;
+		Gedcom gedcom;
+		Charset charset;
 		string language;
 		string place_hierarchy;
 		string note;
