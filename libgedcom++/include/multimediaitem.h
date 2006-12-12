@@ -11,6 +11,7 @@ class UserRefNumber;
 class ChangeDate;
 
 #include <string>
+#include <gom.h>
 #include "gedcomrecord.h"
 using namespace std;
 /**
@@ -20,6 +21,7 @@ class MultimediaItem : public GedcomRecord
 {
 	public:
 		MultimediaItem();
+		MultimediaItem(multimedia* c_style_mm_item);
 		~MultimediaItem();
 		//accessors
 	private:

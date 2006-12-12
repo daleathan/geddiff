@@ -10,7 +10,7 @@ class UserData;
 class XRefValue;
 #include <string>
 #include "source.h"
-#include "gedcom.h"	//??
+#include "gedcom_pp.h"	//??
 #include "charset.h"	//??
 
 using namespace std;

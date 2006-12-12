@@ -9,11 +9,13 @@ class Address;
 class MultimediaLink;
 class ChangeDate;
 class Submitter;
-#include "gedcomrecord.h"
+
 #include <string>
 
-using namespace std;
+#include <gom.h>
 
+#include "gedcomrecord.h"
+using namespace std;
 
 /**
 	@author Josh Hansen <oyevato@gmail.com>
@@ -22,6 +24,7 @@ class Submitter : public GedcomRecord
 {
 	public:
 		Submitter();
+		Submitter(submitter* c_style_submitter);
 		~Submitter();
 	private:
 		//string xrefstr

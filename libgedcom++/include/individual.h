@@ -18,7 +18,11 @@ class UserRefNumber;
 class ChangeDate;
 
 #include <string>
+//---gedcom_parse----
+#include <gom.h>
+//------libgedcom++-----
 #include "gedcomrecord.h"
+
 
 using namespace std;
 /**
@@ -28,9 +32,11 @@ class Individual : public GedcomRecord
 {
 	public:
 		Individual();
+		Individual(individual* c_style_individual);
 		~Individual();
 		//accessors
 	private:
+	
 		//string xrefstr;
 		string restriction_notice;
 		PersonalName* name;

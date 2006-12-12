@@ -11,6 +11,9 @@ class UserRefNumber;
 class ChangeDate;
 
 #include <string>
+
+#include <gom.h>
+
 #include "repolink.h"
 #include "sourcedata.h"
 #include "gedcomrecord.h"
@@ -23,6 +26,7 @@ class Source : public GedcomRecord
 {
 	public:
 		Source();
+		Source(source* c_style_source);
 		~Source();
 		//accessors
 	private:

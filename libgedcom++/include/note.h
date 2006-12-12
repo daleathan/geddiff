@@ -10,6 +10,9 @@ class UserRefNumber;
 class ChangeDate;
 
 #include <string>
+
+#include <gom.h>
+
 #include "gedcomrecord.h"
 using namespace std;
 /**
@@ -19,6 +22,7 @@ class Note : public GedcomRecord
 {
 	public:
 		Note();
+		Note(note* c_style_note);
 		~Note();
 	private:
 		//string xrefstr;

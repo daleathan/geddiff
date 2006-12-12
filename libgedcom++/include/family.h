@@ -16,6 +16,9 @@ class UserRefNumber;
 class ChangeDate;
 
 #include <string>
+
+#include <gom.h>
+
 #include "gedcomrecord.h"
 using namespace std;
 /**
@@ -25,6 +28,7 @@ class Family : GedcomRecord
 {
 	public:
 		Family();
+		Family(family* c_style_family);
 		~Family();
 		//accessors
 	private:

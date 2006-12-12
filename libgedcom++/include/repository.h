@@ -11,6 +11,9 @@ class UserRefNumber;
 class ChangeDate;
 
 #include <string>
+
+#include <gom.h>
+
 #include "gedcomrecord.h"
 using namespace std;
 /**
@@ -20,6 +23,7 @@ class Repository : public GedcomRecord
 {
 	public:
 		Repository();
+		Repository(repository* c_style_repo);
 		~Repository();
 		//accessors
 	private:

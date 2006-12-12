@@ -8,6 +8,9 @@
 class XRefValue;
 class UserData;
 #include <string>
+
+#include <gom.h>
+
 using namespace std;
 
 /**
@@ -17,6 +20,7 @@ class UserRecord
 {
 	public:
 		UserRecord();
+		UserRecord(user_rec* c_style_user_rec);
 		~UserRecord();
 	private:
 		string xrefstr;
