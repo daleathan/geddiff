@@ -2,3 +2,5 @@ Build and install gedcom-parse-0.90.0
 Add /usr/local/lib to the LD_LIBRARY_PATH variable, for example by adding this line to .bashrc
 	export LD_LIBRARY_PATH=/usr/local/lib
 
+------------------- IDEAS --------------------
+Perhaps our algorithm could utilize the Harmony project?
