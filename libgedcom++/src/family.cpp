@@ -9,6 +9,9 @@ Family::Family()
 		: GedcomRecord()
 {}
 
+Family::Family(family* c_style_family)
+{
+}
 
 Family::~Family()
 {}

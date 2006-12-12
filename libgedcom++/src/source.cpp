@@ -9,6 +9,9 @@ Source::Source()
 		: GedcomRecord()
 {}
 
+Source::Source(source* c_style_source)
+{
+}
 
 Source::~Source()
 {}

@@ -9,6 +9,9 @@ Repository::Repository()
 		: GedcomRecord()
 {}
 
+Repository::Repository(repository* c_style_repo)
+{
+}
 
 Repository::~Repository()
 {}

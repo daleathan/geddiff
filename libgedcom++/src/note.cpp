@@ -9,6 +9,9 @@ Note::Note()
 		: GedcomRecord()
 {}
 
+Note::Note(note* c_style_note)
+{
+}
 
 Note::~Note()
 {}

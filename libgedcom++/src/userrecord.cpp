@@ -8,6 +8,9 @@
 UserRecord::UserRecord()
 {}
 
+UserRecord::UserRecord(user_rec* c_style_user_rec)
+{
+}
 
 UserRecord::~UserRecord()
 {}

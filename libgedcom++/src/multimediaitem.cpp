@@ -9,6 +9,9 @@ MultimediaItem::MultimediaItem()
 		: GedcomRecord()
 {}
 
+MultimediaItem::MultimediaItem(multimedia* c_style_mm_item)
+{
+}
 
 MultimediaItem::~MultimediaItem()
 {}

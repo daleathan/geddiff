@@ -6,10 +6,9 @@
 #include "header.h"
 
 Header::Header()
-{}
-
+{
+}
 
 Header::~Header()
-{}
-
-
+{
+}

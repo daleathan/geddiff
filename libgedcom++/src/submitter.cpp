@@ -9,6 +9,9 @@ Submitter::Submitter()
 		: GedcomRecord()
 {}
 
+Submitter::Submitter(submitter* c_style_submitter)
+{
+}
 
 Submitter::~Submitter()
 {}
