@@ -31,6 +31,7 @@ class Family : GedcomRecord
 		Family(family* c_style_family);
 		~Family();
 		//accessors
+		string get_xrefstr() const;
 	private:
 		//string xrefstr;
 		Event* event;

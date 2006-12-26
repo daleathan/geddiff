@@ -25,5 +25,4 @@ int main(int argc, char* argv[])
 //	GeddiffProg prog;
 //	prog.run(argc, argv);
 	Gedcom file;
-	
 }

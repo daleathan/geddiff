@@ -14,6 +14,9 @@ class MultimediaLink;
 class NoteSub;
 class XRefValue;
 class UserData;
+
+#include <gom.h>
+
 #include <string>
 using namespace std;
 
@@ -24,10 +27,11 @@ class Event
 {
 	public:
 		Event();
+		Event(event* c_style_event);
 		~Event();
 		//accessors
 	private:
-		int event; // what is this?
+		//int event; // what is this?
 		string event_name;
 		string val;
 		string type;

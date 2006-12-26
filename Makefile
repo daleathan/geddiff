@@ -2,12 +2,12 @@
 CC = g++
 
 INCLUDES = -I/usr/local/include -Iinclude -Ilibgedcom++/include
-LIB_PATHS = -L/usr/local/lib
+LIB_PATHS = -L/usr/local/lib -Llib
 FLAGS = -Wall -g $(INCLUDES) $(LIB_PATHS)
 
 EXE_NAME = bin/geddiff
 LIB_GEDCOM_PP = lib/libgedcom++.so
-LIBS=-lgedcom_gom -lutf8tools -lgedcom
+LIBS=-lgedcom_gom -lutf8tools -lgedcom -lgedcom++
 
 LIB_SRC_RAW = address.cpp association.cpp changedate.cpp charset.cpp corporation.cpp \
 			datevalue.cpp event.cpp family.cpp familylink.cpp gedcom_pp.cpp gedcomrecord.cpp header.cpp \
@@ -17,18 +17,34 @@ LIB_SRC_RAW = address.cpp association.cpp changedate.cpp charset.cpp corporation
 			sourcedata.cpp sourcedescription.cpp sourceevent.cpp submission.cpp \
 			submitter.cpp text.cpp userdata.cpp userrecord.cpp userrefnumber.cpp \
 			xreflist.cpp xrefvalue.cpp
-LIB_SRC = $(addprefix libgedcom++/src/, $LIB_SRC_RAW)
-LIB_OBJ = $(addprefix libgedcom++/obj/, $(LIB_SRC_RAW:.cpp=.o) )
+LIB_SRC = libgedcom++/src/address.cpp libgedcom++/src/association.cpp libgedcom++/src/changedate.cpp libgedcom++/src/charset.cpp libgedcom++/src/corporation.cpp \
+			libgedcom++/src/datevalue.cpp libgedcom++/src/event.cpp libgedcom++/src/family.cpp libgedcom++/src/familylink.cpp libgedcom++/src/gedcom_pp.cpp libgedcom++/src/gedcomrecord.cpp libgedcom++/src/header.cpp \
+			libgedcom++/src/headerdata.cpp libgedcom++/src/individual.cpp libgedcom++/src/ldsevent.cpp libgedcom++/src/multimediaitem.cpp \
+			libgedcom++/src/multimedialink.cpp libgedcom++/src/note.cpp libgedcom++/src/notesub.cpp libgedcom++/src/pedigree.cpp libgedcom++/src/personalname.cpp \
+			libgedcom++/src/place.cpp libgedcom++/src/repolink.cpp libgedcom++/src/repository.cpp libgedcom++/src/source.cpp libgedcom++/src/sourcecitation.cpp \
+			libgedcom++/src/sourcedata.cpp libgedcom++/src/sourcedescription.cpp libgedcom++/src/sourceevent.cpp libgedcom++/src/submission.cpp \
+			libgedcom++/src/submitter.cpp libgedcom++/src/text.cpp libgedcom++/src/userdata.cpp libgedcom++/src/userrecord.cpp libgedcom++/src/userrefnumber.cpp \
+			libgedcom++/src/xreflist.cpp libgedcom++/src/xrefvalue.cpp
+#$(addprefix libgedcom++/src/, $LIB_SRC_RAW)
+LIB_OBJ = libgedcom++/obj/address.o libgedcom++/obj/association.o libgedcom++/obj/changedate.o libgedcom++/obj/charset.o libgedcom++/obj/corporation.o \
+			libgedcom++/obj/datevalue.o libgedcom++/obj/event.o libgedcom++/obj/family.o libgedcom++/obj/familylink.o libgedcom++/obj/gedcom_pp.o libgedcom++/obj/gedcomrecord.o libgedcom++/obj/header.o \
+			libgedcom++/obj/headerdata.o libgedcom++/obj/individual.o libgedcom++/obj/ldsevent.o libgedcom++/obj/multimediaitem.o \
+			libgedcom++/obj/multimedialink.o libgedcom++/obj/note.o libgedcom++/obj/notesub.o libgedcom++/obj/pedigree.o libgedcom++/obj/personalname.o \
+			libgedcom++/obj/place.o libgedcom++/obj/repolink.o libgedcom++/obj/repository.o libgedcom++/obj/source.o libgedcom++/obj/sourcecitation.o \
+			libgedcom++/obj/sourcedata.o libgedcom++/obj/sourcedescription.o libgedcom++/obj/sourceevent.o libgedcom++/obj/submission.o \
+			libgedcom++/obj/submitter.o libgedcom++/obj/text.o libgedcom++/obj/userdata.o libgedcom++/obj/userrecord.o libgedcom++/obj/userrefnumber.o \
+			libgedcom++/obj/xreflist.o libgedcom++/obj/xrefvalue.o
+#$(addprefix libgedcom++/obj/, $(LIB_SRC_RAW:.cpp=.o) )
 
 SRC_RAW = geddiff.cpp geddiff-prog.cpp 
-OBJ = $(addprefix obj/, $(SRC_RAW:.cpp=.o) )
-SRC = $(addprefix src/, $(SRC_RAW) )
-all : obj lib bin #test-bin
+OBJ = obj/geddiff.o obj/geddiff-prog.o #$(addprefix obj/, $(SRC_RAW:.cpp=.o) )
+SRC = src/geddiff.cpp src/geddiff-prog.cpp #$(addprefix src/, $(SRC_RAW) )
+all : obj lib bin #test-bin 
 test-bin : bin/geddiff-test
 lib : $(LIB_OBJ)
 	g++ -shared -o $(LIB_GEDCOM_PP) $(LIB_OBJ)
-obj: $(OBJ) $(LIB_OBJ)
 
+obj: $(OBJ) $(LIB_OBJ)
 
 bin: $(EXE_NAME) #tags
 
@@ -43,7 +59,7 @@ clean:
 #bin/geddiff : lib src/geddiff.cpp include/geddiff-prog.h 
 #	g++ $(FLAGS) $(LIBS) -o bin/geddiff $(OBJ_FILES)
 $(EXE_NAME): $(OBJ)
-	$(CC) -o $@ $(FLAGS) $(LIBS) $(OBJ) $(LIB_OBJ)
+	$(CC) -o $@ $(FLAGS) $(LIBS) $(OBJ) #$(LIB_OBJ)
 #bin/geddiff-test : test-src/geddiff-test.cpp include/geddiff-prog.h $(OBJ_FILES)
 #	g++ $(FLAGS) -o bin/geddiff-test test-src/geddiff-test.cpp $(OBJ_FILES)
 
@@ -65,7 +81,7 @@ test-valgrind : all
 valgrind : all
 	valgrind --log-file=dbg/chess --suppressions=dbg/chess-suppressions.supp --tool=memcheck --leak-check=yes --show-reachable=yes bin/chess
 run:
-	LD_LIBRARY_PATH=/usr/local/lib/ ./bin/geddiff
+	LD_LIBRARY_PATH=/usr/local/lib/:lib ./bin/geddiff
 # DO NOT DELETE
 
 src/geddiff-prog.o: include/geddiff-prog.h
