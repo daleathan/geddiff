@@ -5,6 +5,8 @@
 #ifndef XREFLIST_H
 #define XREFLIST_H
 
+#include <gom.h>
+
 class XRefValue;
 class UserData;
 
@@ -15,6 +17,7 @@ class XRefList
 {
 	public:
 		XRefList();
+		XRefList(xref_list* c_style_xref_list);
 		~XRefList();
 		//accessors
 	private:

@@ -10,6 +10,9 @@ class XRefValue;
 class SourceCitation;
 class NoteSub;
 class UserData;
+
+#include <gom.h>
+
 #include <string>
 using namespace std;
 
@@ -20,6 +23,7 @@ class LdsEvent
 {
 	public:
 		LdsEvent();
+		LdsEvent(lds_event* c_lds_event);
 		~LdsEvent();
 		//accessors
 	private:

@@ -8,6 +8,9 @@
 class XRefValue;
 class NoteSub;
 class UserData;
+
+#include <gom.h>
+
 #include <string>
 using namespace std;
 
@@ -18,6 +21,7 @@ class MultimediaLink
 {
 	public:
 		MultimediaLink();
+		MultimediaLink(multimedia_link* c_mm_link);
 		~MultimediaLink();
 	private:
 		XRefValue* reference;

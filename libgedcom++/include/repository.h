@@ -10,9 +10,9 @@ class NoteSub;
 class UserRefNumber;
 class ChangeDate;
 
-#include <string>
-
 #include <gom.h>
+
+#include <string>
 
 #include "gedcomrecord.h"
 using namespace std;

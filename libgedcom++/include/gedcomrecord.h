@@ -20,11 +20,14 @@ class GedcomRecord
 	public:
 		GedcomRecord();
 		~GedcomRecord();
+		UserData* get_extra() const { return extra; }
+		string get_record_id() const { return record_id; }
+		string get_xrefstr() const { return xrefstr; }
 	private:
 	protected:
-	UserData* extra;
-	string record_id;
-	string xrefstr;
+		UserData* extra;
+		string record_id;
+		string xrefstr;
 };
 
 #endif

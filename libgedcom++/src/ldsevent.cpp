@@ -6,8 +6,13 @@
 #include "ldsevent.h"
 
 LdsEvent::LdsEvent()
-{}
+{
+}
 
+LdsEvent::LdsEvent(lds_event* c_lds_event)
+{
+	//TODO LdsEvent ctor
+}
 
 LdsEvent::~LdsEvent()
 {}

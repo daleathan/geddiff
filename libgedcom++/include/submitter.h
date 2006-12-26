@@ -10,9 +10,9 @@ class MultimediaLink;
 class ChangeDate;
 class Submitter;
 
-#include <string>
-
 #include <gom.h>
+
+#include <string>
 
 #include "gedcomrecord.h"
 using namespace std;

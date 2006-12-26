@@ -11,14 +11,14 @@
 Event::Event()
 {}
 
+Event::Event(event* c_style_event)
+{
+	//TODO event ctor
+	cout << "Event" << endl;
+}
 
 Event::~Event()
 {
 	cout << "~Event" << endl;
 }
 
-Event::Event(event* c_style_event)
-{
-	//TODO event ctor
-	cout << "Event" << endl;
-}

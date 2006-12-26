@@ -24,14 +24,13 @@ using namespace std;
 /**
 	@author Josh Hansen <josh@cervantes>
 */
-class Family : GedcomRecord
+class Family : public GedcomRecord
 {
 	public:
 		Family();
 		Family(family* c_style_family);
 		~Family();
 		//accessors
-		string get_xrefstr() const;
 	private:
 		//string xrefstr;
 		Event* event;

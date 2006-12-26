@@ -8,6 +8,9 @@
 class XRefValue;
 class SourceCitation;
 class UserData;
+
+#include <gom.h>
+
 #include <string>
 using namespace std;
 
@@ -18,6 +21,7 @@ class NoteSub
 {
 	public:
 		NoteSub();
+		NoteSub(note_sub* c_note);
 		~NoteSub();
 	private:
 		string text;

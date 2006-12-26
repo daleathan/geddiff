@@ -8,6 +8,10 @@
 MultimediaLink::MultimediaLink()
 {}
 
+MultimediaLink::MultimediaLink(multimedia_link* c_mm_link)
+{
+	//TODO MultimediaLink ctor
+}
 
 MultimediaLink::~MultimediaLink()
 {}

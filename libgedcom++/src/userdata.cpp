@@ -6,8 +6,13 @@
 #include "userdata.h"
 
 UserData::UserData()
-{}
+{
+}
 
+UserData::UserData(user_data* c_extra)
+{
+	//TODO UserData ctor
+}
 
 UserData::~UserData()
 {}

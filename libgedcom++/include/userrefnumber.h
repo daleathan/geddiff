@@ -6,6 +6,9 @@
 #define USERREFNUMBER_H
 
 class UserData;
+
+#include <gom.h>
+
 #include <string>
 using namespace std;
 
@@ -16,6 +19,7 @@ class UserRefNumber
 {
 	public:
 		UserRefNumber();
+		UserRefNumber(user_ref_number* c_ref);
 		~UserRefNumber();
 	private:
 		string value;

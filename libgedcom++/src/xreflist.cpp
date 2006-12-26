@@ -5,11 +5,22 @@
 *****************************************************************/
 #include "xreflist.h"
 
-XRefList::XRefList()
-{}
+#include <iostream>
+#include <iomanip>
+using namespace std;
 
+XRefList::XRefList()
+{
+}
+
+XRefList::XRefList(xref_list* c_style_xref_list)
+{
+	//TOOD XRefList ctor
+	cout << "XRefList" << endl;
+}
 
 XRefList::~XRefList()
-{}
-
+{
+	cout << "~XRefList" << endl;
+}
 

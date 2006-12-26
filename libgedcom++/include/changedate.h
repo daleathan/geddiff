@@ -8,6 +8,9 @@
 class DateValue;
 class NoteSub;
 class UserData;
+
+#include <gom.h>
+
 #include <string>
 using namespace std;
 
@@ -18,6 +21,7 @@ class ChangeDate
 {
 	public:
 		ChangeDate();
+		ChangeDate(change_date* c_change_date);
 		~ChangeDate();
 	private:
 		DateValue* date;

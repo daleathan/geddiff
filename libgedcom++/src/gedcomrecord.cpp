@@ -6,10 +6,11 @@
 #include "gedcomrecord.h"
 
 GedcomRecord::GedcomRecord()
-{}
+{
+}
 
 
 GedcomRecord::~GedcomRecord()
-{}
-
+{
+}
 

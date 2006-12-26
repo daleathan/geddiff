@@ -7,6 +7,8 @@
 #include <iomanip>
 using namespace std;
 
+//#include "gedcomrecord.h"
+
 #include "family.h"
 #include "individual.h"
 #include "multimediaitem.h"

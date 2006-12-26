@@ -6,6 +6,9 @@
 #define USERDATA_H
 
 class XRefValue;
+
+#include <gom.h>
+
 #include <string>
 using namespace std;
 
@@ -16,6 +19,7 @@ class UserData
 {
 	public:
 		UserData();
+		UserData(user_data* c_extra);
 		~UserData();
 		//accessors
 	private:

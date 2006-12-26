@@ -11,6 +11,9 @@ class Text;
 class MultimediaLink;
 class NoteSub;
 class UserData;
+
+#include <gom.h>
+
 #include <string>
 using namespace std;
 
@@ -21,6 +24,7 @@ class SourceCitation
 {
 	public:
 		SourceCitation();
+		SourceCitation(source_citation* c_citation);
 		~SourceCitation();
 		//accessors
 	private:
