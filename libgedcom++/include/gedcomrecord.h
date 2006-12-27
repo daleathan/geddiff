@@ -23,9 +23,13 @@ class GedcomRecord
 		UserData* get_extra() const { return extra; }
 		string get_record_id() const { return record_id; }
 		string get_xrefstr() const { return xrefstr; }
+		GedcomRecord* get_record(const string id);
+		void add_record(GedcomRecord* new_record);
 	private:
 	protected:
 		UserData* extra;
+		GedcomRecord* prev;
+		GedcomRecord* next;
 		string record_id;
 		string xrefstr;
 };

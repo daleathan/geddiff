@@ -78,8 +78,11 @@ dep:
 
 test-valgrind : all
 	valgrind --log-file=dbg/chess-test --suppressions=dbg/chess-suppressions.supp --tool=memcheck --leak-check=yes --show-reachable=yes bin/chess-test
+
+#--suppressions=dbg/chess-suppressions.supp
 valgrind : all
-	valgrind --log-file=dbg/chess --suppressions=dbg/chess-suppressions.supp --tool=memcheck --leak-check=yes --show-reachable=yes bin/chess
+	LD_LIBRARY_PATH=/usr/local/lib/:lib valgrind --log-file=dbg/geddiff --tool=memcheck --leak-check=yes --show-reachable=yes bin/geddiff
+
 run:
 	LD_LIBRARY_PATH=/usr/local/lib/:lib ./bin/geddiff
 # DO NOT DELETE

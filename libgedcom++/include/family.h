@@ -33,7 +33,7 @@ class Family : public GedcomRecord
 		Family(family* c_style_family, const Gedcom& gom);
 		~Family();
 		//accessors
-		Family* get_family(string id);
+//		Family* get_family(string id);
 	private:
 		//string xrefstr;
 		Event* event;
@@ -49,8 +49,8 @@ class Family : public GedcomRecord
 		UserRefNumber* ref;
 		//string record_id;
 		ChangeDate* change_date;
-		Family* prev;
-		Family* next;
+		//Family* prev;
+		//Family* next;
 };
 
 #endif

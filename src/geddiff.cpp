@@ -1,14 +1,14 @@
-/* gedcom-diff - a utility to identify differences between GEDCOM family history files */
+/* geddiff - a utility to identify differences between GEDCOM family history files */
+
+#include "geddiff-prog.h"
+#include "gedcom_pp.h"
+
+#include <gedcom.h>
+#include <gom.h>
 
 #include <iostream>
 #include <iomanip>
 using namespace std;
-
-#include <gedcom.h>
-#include <gom.h>
-#include "geddiff-prog.h"
-
-#include "gedcom_pp.h"
 
 void my_message_handler (Gedcom_msg_type type, char *msg)
 {
