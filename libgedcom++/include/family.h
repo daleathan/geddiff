@@ -15,6 +15,8 @@ class NoteSub;
 class UserRefNumber;
 class ChangeDate;
 
+class Gedcom;
+
 #include <string>
 
 #include <gom.h>
@@ -28,9 +30,10 @@ class Family : public GedcomRecord
 {
 	public:
 		Family();
-		Family(family* c_style_family);
+		Family(family* c_style_family, const Gedcom& gom);
 		~Family();
 		//accessors
+		Family* get_family(string id);
 	private:
 		//string xrefstr;
 		Event* event;
@@ -46,8 +49,8 @@ class Family : public GedcomRecord
 		UserRefNumber* ref;
 		//string record_id;
 		ChangeDate* change_date;
-		Family* next;
 		Family* prev;
+		Family* next;
 };
 
 #endif
