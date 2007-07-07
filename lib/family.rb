@@ -1,5 +1,5 @@
 #family.rb
-#GPLv2.1 or later
+#License: LGPLv2.1 or later
 #Copyright: Josh Hansen
 require "gedcom_record.rb"
 require "set.rb"
