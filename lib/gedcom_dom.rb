@@ -1,20 +1,18 @@
 #gedcom_dom.rb
-#GPLv2.1 or later
-#Derived from Jamis Buck's gedcom/ruby sample code
+#License: LGPL 2.1 or later
+#Very distantly derived from Jamis Buck's gedcom/ruby sample code
 #Also Copyright Josh Hansen
 
 require "gedcom"
 
 require "gedcom_record.rb"
 require "individual.rb"
-require "birth.rb"
-require "death.rb"
 require "ref.rb"
 require "repo.rb"
 require "address.rb"
 require "source.rb"
 require "family.rb"
-require "marriage.rb"
+require "event.rb"
 require "set"
 
 def debug (text)
@@ -42,6 +40,8 @@ class GedcomDOM < GEDCOM::Parser
 		setPostHandler	[ "FAM" ],			method( :end_family )
 		
 		setPreHandler	[ "INDI" ],			method( :init_indiv )
+		setPreHandler	[ "INDI", "FAMC" ],		method( :reg_famc )
+		setPreHandler	[ "INDI", "FAMS" ],		method( :reg_fams )
 		setPreHandler	[ "INDI", "SEX" ],		method( :reg_sex )
 		setPreHandler	[ "INDI", "NAME", "GIVN" ],	method( :reg_given_names )
 		setPreHandler	[ "INDI", "NAME", "SURN" ],	method( :reg_surname )
@@ -101,8 +101,9 @@ class GedcomDOM < GEDCOM::Parser
 			#
 		end
 	end
+	
 	def end_indiv( data, state, parm )
-# 		#TODO Add some validation to make sure we add a legitimate individual
+		#TODO Add some validation to make sure we add a legitimate individual
 		if( ! @individuals.has_key?( @cur_indiv.tag ) )
 			@individuals.store(@cur_indiv.tag, @cur_indiv)
 		else
@@ -111,19 +112,52 @@ class GedcomDOM < GEDCOM::Parser
 		@cur_indiv = nil
 	end
 	
-	def reg_given_names (data, state, parm)
+	def reg_famc( data, state, parm )
+		if(@cur_indiv)
+			#TODO Check if we've already added this FAMS and warn about redundancy
+			@cur_indiv.famc_refs.add( Ref.new( data, @families ) )
+		else
+		end
+	end
+	
+	def reg_fams( data, state, parm )
+		if(@cur_indiv)
+			#TODO Check if we've already added this FAMC and warn about redundancy
+			@cur_indiv.fams_refs.add( Ref.new( data, @families ) )
+		else
+		end
+	end
+	
+	def reg_given_names( data, state, parm )
 		@cur_indiv.given_names = data if @cur_indiv.given_names == nil	#TODO do something if name is already set -- like throw an exception?
 	end
 	
-	def reg_surname (data, state, parm)
+	def reg_surname( data, state, parm )
 		@cur_indiv.surname = data if @cur_indiv.surname == nil	#TODO do something if name is already set -- like throw an exception?
 	end
-	def reg_sex (data, state, parm)
+	
+	def reg_sex( data, state, parm )
 		@cur_indiv.sex = data if @cur_indiv.sex == nil
 	end
 
+	#Event
+	def init_birth( data, state, parm )
+		if(@cur_event == nil)
+			@cur_event = Event.new("birth")
+		else
+			#throw Exception.new
+		end
+	end
+
+	def init_death( data, state, parm )
+		if(@cur_event == nil)
+			@cur_event = Event.new("death")
+		else
+			#throw Exception.new
+		end
+	end
+	
 	def reg_date( data, state, parm )
-		
 		if (@cur_event.date == nil)
 			d = GEDCOM::Date.safe_new( data )
 			if d.is_date? and d.first.has_year? and d.first.has_month?
@@ -135,6 +169,7 @@ class GedcomDOM < GEDCOM::Parser
 			#?
 		end
 	end
+	
 	def reg_place( data, state, parm)
 		if(@cur_event)
 			@cur_event.place = data if @cur_event.place == nil
@@ -142,6 +177,7 @@ class GedcomDOM < GEDCOM::Parser
 			#throw some exception
 		end
 	end
+	
 	def reg_source_ref( data, state, parm )
 		if(@cur_event)
 			@cur_event.source_refs.add( Ref.new(data, @sources) )
@@ -149,26 +185,6 @@ class GedcomDOM < GEDCOM::Parser
 		
 		end
 		
-	end
-	
-	def init_birth( data, state, parm )
-		if(@cur_event == nil)
-			#puts "Setting @cur_event"
-			@cur_event = Birth.new
-		else
-			#throw Exception.new
-			puts "ERROR"
-		end
-	end
-
-	def init_death( data, state, parm )
-		if(@cur_event == nil)
-			#puts "Setting @cur_event"
-			@cur_event = Death.new
-		else
-			#throw Exception.new
-			puts "ERROR"
-		end
 	end
 
 	def end_event( data, state, parm )
@@ -180,6 +196,7 @@ class GedcomDOM < GEDCOM::Parser
 		@cur_event = nil
 	end
 	
+	#Repository
 	def init_repo( data, state, parm )
 		if(@cur_repo == nil)
 			@cur_repo = Repo.new( data )
@@ -187,6 +204,7 @@ class GedcomDOM < GEDCOM::Parser
 			#
 		end
 	end
+	
 	def end_repo( data, state, parm )
 		if( ! @repos.has_key?(@cur_repo.tag) )
 			@repos.store(@cur_repo.tag,@cur_repo)
@@ -196,7 +214,6 @@ class GedcomDOM < GEDCOM::Parser
 		@cur_repo = nil
 	end
 
-	
 	def reg_repo_name( data, state, parm )
 		if(@cur_repo)
 			@cur_repo.name = data if @cur_repo.name == nil
@@ -204,6 +221,7 @@ class GedcomDOM < GEDCOM::Parser
 			#
 		end
 	end
+	
 	def init_repo_addr( data, state, parm )
 		if(@cur_addr == nil)
 			@cur_addr = Address.new( data )
@@ -211,6 +229,7 @@ class GedcomDOM < GEDCOM::Parser
 			#
 		end
 	end
+	
 	def reg_repo_addr_city( data, state, parm )
 		if(@cur_addr)
 			@cur_addr.city = data
@@ -218,6 +237,7 @@ class GedcomDOM < GEDCOM::Parser
 			#
 		end
 	end
+	
 	def reg_repo_addr_state( data, state, parm )
 		if(@cur_addr)
 			@cur_addr.state = data
@@ -225,6 +245,7 @@ class GedcomDOM < GEDCOM::Parser
 			#
 		end
 	end
+	
 	def reg_repo_addr_post( data, state, parm )
 		if(@cur_addr)
 			@cur_addr.post = data
@@ -232,6 +253,7 @@ class GedcomDOM < GEDCOM::Parser
 			#
 		end
 	end
+	
 	def reg_repo_addr_country( data, state, parm )
 		if(@cur_addr)
 			@cur_addr.country = data
@@ -239,6 +261,7 @@ class GedcomDOM < GEDCOM::Parser
 			#
 		end
 	end
+	
 	def end_repo_addr( data, state, parm )
 		if(@cur_repo)
 			@cur_repo.addr = @cur_addr if @cur_repo.addr == nil
@@ -252,6 +275,7 @@ class GedcomDOM < GEDCOM::Parser
 	def init_source( data, state, parm )
 		@cur_source = Source.new data if @cur_source == nil
 	end
+	
 	def reg_sour_titl( data, state, parm )
 		if(@cur_source)
 			@cur_source.title = data if @cur_source.title == nil
@@ -269,12 +293,14 @@ class GedcomDOM < GEDCOM::Parser
 	def init_sour_chan( data, state, parm )
 		#If we add multiple CHAN support in the Source class then we'll use this to instantiate it
 	end
+	
 	def init_sour_chan_date( data, state, parm )
 		if(@cur_source)
 			@cur_source.date = data if @cur_source.date == nil
 		else
 		end
 	end
+	
 	def reg_sour_chan_date_time( data, state, parm )
 		if(@cur_source)
 			@cur_source.time = data if @cur_source.time == nil
@@ -303,6 +329,7 @@ class GedcomDOM < GEDCOM::Parser
 	def init_family( data, state, parm )
 		@cur_fam = Family.new data if @cur_fam == nil
 	end
+	
 	def end_family( data, state, parm )
 		if(@cur_fam)
 			if( ! @families.has_key?(@cur_fam.tag) )
@@ -317,27 +344,35 @@ class GedcomDOM < GEDCOM::Parser
 	end
 	
 	def init_marriage( data, state, parm )
-		@cur_marriage = Marriage.new if @cur_marriage == nil
+		if(@cur_marriage == nil)
+			@cur_marriage = Event.new("marriage")
+		else
+			#
+		end
 	end
+	
 	def reg_marr_date( data, state, parm )
 		if(@cur_marriage)
 			@cur_marriage.date = data if @cur_marriage.date == nil
 		else
 		end
 	end
+	
 	def reg_marr_place( data, state, parm )
 		if(@cur_marriage)
 			@cur_marriage.place = data if @cur_marriage.place == nil
 		else
 		end
 	end
+	
 	def reg_marr_source( data, state, parm )
 		if(@cur_marriage)
 			@cur_marriage.source_refs.add( Ref.new(data, @sources) ) #if @cur_marriage.source_refs.include ...
 		else
 		end
 	end
-	def end_marriage( data, state, parm )
+	
+	def end_marriage( data, state, parm )	#Tragic-sounding method name, eh?
 		if( @cur_fam )
 			if( ! @cur_fam.events.include?(@cur_marriage) )
 				@cur_fam.events.add(@cur_marriage)
@@ -347,18 +382,21 @@ class GedcomDOM < GEDCOM::Parser
 			@cur_fam = nil
 		end
 	end
+	
 	def reg_husband( data, state, parm )
 		if( @cur_fam )
 			@cur_fam.husband = Ref.new( data, @individuals ) if @cur_fam.husband == nil
 		else
 		end
 	end
+	
 	def reg_wife( data, state, parm )
 		if( @cur_fam )
 			@cur_fam.wife = Ref.new( data, @individuals )  if @cur_fam.wife == nil
 		else
 		end
 	end
+	
 	def reg_child( data, state, parm )
 		if( @cur_fam )
 			@cur_fam.children.add( Ref.new( data, @individuals )  )
