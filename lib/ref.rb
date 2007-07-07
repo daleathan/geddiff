@@ -1,5 +1,5 @@
 #ref.rb
-#GPLv2.1 or later
+#License: LGPLv2.1 or later
 #Copyright: Josh Hansen
 #Holds a reference to later be resolved to some sort of GedcomRecord
 
@@ -20,7 +20,10 @@ class Ref
 			return @resolved_obj = @collection[ref_string]
 		end
 	end
+	def to_deref_s
+		return lookup().to_s
+	end
 	def to_s
-		return @collection[@ref_string].to_s
+		return "Reference:\t#{@ref_string}"
 	end
 end
