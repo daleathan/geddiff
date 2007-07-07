@@ -1,17 +1,20 @@
 #event.rb
-#GPLv2.1 or later
+#License: LGPLv2.1 or later
 #Copyright: Josh Hansen
 
 class Event
 	attr_accessor :evt_type, :date, :place, :source_refs
-	def initialize
-		@evt_type = nil
+	def initialize( type )
+		@source_refs = Set.new
+		@evt_type = type
 		@date = nil
 		@place = nil
-		@source_refs = Set.new
 	end
 	def to_s
-		r = "#{@evt_type}:\tdate=#{@date}\tplace=#{@place}\n"
+		r = "Event:"
+		r += "\ttype: #{@evt_type}"
+		r += "\tdate: #{@date}" if @date
+		r += "\tdate: #{@date}" if @place
 		source_refs.each {|ref|
 			r += "\t" + ref.to_s
 		}
