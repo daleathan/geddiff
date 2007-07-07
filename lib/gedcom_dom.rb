@@ -102,12 +102,7 @@ class GedcomDOM < GEDCOM::Parser
 		end
 	end
 	def end_indiv( data, state, parm )
-# 		debug "end_indiv"
 # 		#TODO Add some validation to make sure we add a legitimate individual
-# 		@individuals.push @cur_indiv #if @cur_indiv.date != nil
-# 		#puts "Added individual #{@cur_indiv}"
-# 		@cur_indiv = nil
-		
 		if( ! @individuals.has_key?( @cur_indiv.tag ) )
 			@individuals.store(@cur_indiv.tag, @cur_indiv)
 		else
@@ -149,7 +144,7 @@ class GedcomDOM < GEDCOM::Parser
 	end
 	def reg_source_ref( data, state, parm )
 		if(@cur_event)
-			@cur_event.source_refs.add( Ref.new(data) )
+			@cur_event.source_refs.add( Ref.new(data, @sources) )
 		else
 		
 		end
@@ -338,7 +333,7 @@ class GedcomDOM < GEDCOM::Parser
 	end
 	def reg_marr_source( data, state, parm )
 		if(@cur_marriage)
-			@cur_marriage.source_refs.add( Ref.new(data) ) #if @cur_marriage.source_refs.include ...
+			@cur_marriage.source_refs.add( Ref.new(data, @sources) ) #if @cur_marriage.source_refs.include ...
 		else
 		end
 	end
@@ -354,19 +349,19 @@ class GedcomDOM < GEDCOM::Parser
 	end
 	def reg_husband( data, state, parm )
 		if( @cur_fam )
-			@cur_fam.husband = Ref.new data if @cur_fam.husband == nil
+			@cur_fam.husband = Ref.new( data, @individuals ) if @cur_fam.husband == nil
 		else
 		end
 	end
 	def reg_wife( data, state, parm )
 		if( @cur_fam )
-			@cur_fam.wife = Ref.new data if @cur_fam.wife == nil
+			@cur_fam.wife = Ref.new( data, @individuals )  if @cur_fam.wife == nil
 		else
 		end
 	end
 	def reg_child( data, state, parm )
 		if( @cur_fam )
-			@cur_fam.children.add( Ref.new(data) )
+			@cur_fam.children.add( Ref.new( data, @individuals )  )
 		else
 		end
 	end

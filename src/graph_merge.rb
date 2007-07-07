@@ -1,10 +1,12 @@
-#!/usr/bin/ruby
+#!/usr/bin/ruby -Ilib
 
 require "gedcom_dom.rb"
 
 loader = GedcomDOM.new
-loader.parse("fam.ged")
-puts loader.individuals
+loader.parse("dbg/fam.ged")
+loader.individuals.each_value {|indiv|
+	puts indiv
+}
 loader.repos.each_value {|repo|
 	puts repo
 }
