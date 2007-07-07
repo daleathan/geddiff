@@ -1,4 +1,6 @@
 #!/usr/bin/ruby -Ilib
+#License: GPLv2 or later
+#Copyright: Josh Hansen; algorithm outline by D. Randall Wilson in "Graph-Based Remerging of Genealogical Databases"
 
 require "gedcom_dom.rb"
 
