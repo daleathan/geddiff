@@ -12,12 +12,27 @@ class Event
 	end
 	def to_s
 		r = "Event:"
-		r += "\ttype: #{@evt_type}"
-		r += "\tdate: #{@date}" if @date
-		r += "\tdate: #{@date}" if @place
+		r += "\n\ttype: #{@evt_type}"
+		r += "\n\tdate: #{@date}" if @date
+		r += "\n\tplace: #{@place}\n" if @place
+                
 		source_refs.each {|ref|
-			r += "\t" + ref.to_s
+			r += "\tsrc_ref:" + ref.to_s
 		}
 		return r
+	end
+	
+	def to_hash
+		hash = Hash.new
+		hash.store("type", @evt_type)
+		hash.store("date", @date)
+		hash.store("place", @place)
+		
+		ref_num = 1
+		source_refs.each {|ref|
+			hash.store("src_ref#{ref_num}", ref)
+			ref_num += 1
+		}
+                return hash
 	end
 end

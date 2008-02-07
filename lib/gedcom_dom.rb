@@ -129,15 +129,15 @@ class GedcomDOM < GEDCOM::Parser
 	end
 	
 	def reg_given_names( data, state, parm )
-		@cur_indiv.given_names = data if @cur_indiv.given_names == nil	#TODO do something if name is already set -- like throw an exception?
+		@cur_indiv.given_names = data #if @cur_indiv.given_names == nil	#TODO do something if name is already set -- like throw an exception?
 	end
 	
 	def reg_surname( data, state, parm )
-		@cur_indiv.surname = data if @cur_indiv.surname == nil	#TODO do something if name is already set -- like throw an exception?
+		@cur_indiv.surname = data #if @cur_indiv.surname == nil	#TODO do something if name is already set -- like throw an exception?
 	end
 	
 	def reg_sex( data, state, parm )
-		@cur_indiv.sex = data if @cur_indiv.sex == nil
+		@cur_indiv.sex = data #if @cur_indiv.sex == nil
 	end
 
 	#Event

@@ -5,19 +5,71 @@
 require "gedcom_dom.rb"
 
 loader = GedcomDOM.new
+#loader.parse("dbg/file1.ged")
 loader.parse("dbg/fam.ged")
-loader.individuals.each_value {|indiv|
-	puts indiv
+loader2 = GedcomDOM.new
+loader2.parse("dbg/fam2.ged")
+puts "size:#{loader.individuals.size}"
+
+#puts "------------------------unsorted-----------------------"
+#p loader.individuals
+
+#puts loader.individuals
+#puts loader.individuals.values[0]
+#loader.individuals.each_value {|indiv|
+#	puts indiv
+#        puts "---------------------------------------------------"
+#}
+#puts "------------------------sorted-------------------------"
+loader.individuals.values.sort.each {|indiv|
+        puts indiv
+        puts "----------------------------------------------------"
 }
-loader.repos.each_value {|repo|
-	puts repo
+puts
+puts "*****Set 2*****"
+loader2.individuals.values.sort.each {|indiv2|
+        puts indiv2
+        puts "----------------------------------------------------"
 }
-loader.sources.each_value {|source|
-	puts source
-}
-loader.families.each_value {|fam|
-	puts fam
-}
+#p ["a", "b", ["c"]]
+#puts
+
+#p loader.individuals.values.sort
+#loader.individuals.values.sort.each {|indiv|
+#        puts "indiv:"
+#        puts indiv
+#}
+#loader.families.each_value {|fam|
+#	puts fam
+#}
+#puts "-----------------------------------------------------------------"
+#loader2.individuals.each_value {|indiv|
+#	puts indiv
+#}
+#puts
+#puts "Comparing..."
+#loader.individuals.each_value {|indiv|
+#        loader2.individuals.each_value {|indiv2|
+#                puts "distance from #{indiv.given_names + " " + indiv.surname} to #{indiv2.given_names + " " + indiv2.surname}:#{(indiv.diff(indiv2)).size}"
+#        }
+#}
+#
+# loader.repos.each_value {|repo|
+#         loader2.repos.each_value {|repo2|
+#                 puts "distance from #{repo} to #{repo2} is ???"
+#         }
+# }
+# loader.sources.each_value {|source|
+# 	loader2.sources.each_value {|source2|
+#                puts "distance from #{source} to #{source2} is ???"
+#        }
+# }
+# loader.families.each_value {|fam|
+#        puts "fam:#{fam}"
+# 	loader2.families.each_value {|fam2|
+#                puts "distance from #{fam} to #{fam2} is ???"
+#        }
+# }
 
 # 3. Graph-based Merging Algorithm
 #     A new algorithm is presented here for aiding in the merging process by taking into account

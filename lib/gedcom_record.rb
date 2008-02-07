@@ -7,4 +7,18 @@ class GedcomRecord
 	def initialize( tag )
 		@tag = tag
 	end
+        
+        include Comparable
+        def <=>(other)
+                return @tag <=> other.tag
+        end
+        
+        def ==(other)
+                if(other == nil)
+                        return @tag == ""
+                else
+                        return @tag == other.tag
+                end
+                
+        end
 end

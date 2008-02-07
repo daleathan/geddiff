@@ -10,14 +10,20 @@ Essential to this algorithm is an ability to compute a confidence score indicati
 
 Text comparison code could come from Edit Distance Alignment[2], amatch[3], or Text[4]
 
+==Prerequisites==
+Install Diff::LCS (diff-lcs) from Ruby gems [5]
+Install gedcom-ruby library [0]
+
 ==References==
 [0] - http://gedcom-ruby.sourceforge.net/		LGPL, latest release: 1.0, 27 June 2003
 [1] - http://www.gramps-project.org			GPLv2, latest release: 2.2.8, 22 April 2007
 [2] - http://rubyforge.org/projects/editalign/		beta, GPLv1, latest release: 30 May 2006
 [3] - http://rubyforge.org/projects/amatch		beta, GPLv2, latest release: v0.2.3, 26 September 2006
 [4] - http://rubyforge.org/projects/text		Ruby license, latest release: v1.1.2, 20 February 2007
+[5] - http://raa.ruby-lang.org/project/diff-lcs/	GPLv2+, latest release: v1.1.2, 21 October 2004
 
 See also:
 http://www.alphaworks.ibm.com/tech/xmldiffmerge
 http://en.wikipedia.org/wiki/Diff
 http://en.wikipedia.org/wiki/Levenshtein_distance
+http://www.dcs.shef.ac.uk/%7Esam/simmetrics.html

@@ -8,7 +8,6 @@ class Repo < GedcomRecord
 	attr_accessor :name, :addr
 	def initialize( id )
 		super(id)
-		@id = id
 		@name = nil
 		@addr = nil
 	end
